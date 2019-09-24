@@ -1,11 +1,11 @@
-
-#headerTop{
+#topImg{
     width: 100%;
     height: 120px;
     line-height: 110px;
     /*text-align: center;*/
     padding: 0 0 0 40px;
 }
+/*导航栏图片*/
 #spaceImg{
     vertical-align: middle;
     width: 80px;
@@ -13,6 +13,7 @@
     cursor: pointer;
 
 }
+/*导航栏文字样式*/
 #heardText{
     padding: 0 50px 0 0;
     float: right;
@@ -22,13 +23,22 @@
     vertical-align:middle;
     font-size: 70px;
 }
-/*登陆注册文字*/
+/*登陆搜索文字*/
 .heardContent{
     vertical-align:middle;
     font-size: 25px;
     cursor: pointer;
 }
-/*登录注册文字后面的逗号*/
+/*登录搜索文字后面的逗号*/
 .heardContentComma{
     font-weight: bold;
+}
+/*登录框总体样式*/
+#login{
+    text-align: center;
+    width: 550px;
+    height: 550px;
+    background-color: #3e2fff;
+    border-radius: 10px;
+    box-shadow: gray 1px 1px 1px 1px;
 }
