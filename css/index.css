@@ -1,0 +1,34 @@
+
+#headerTop{
+    width: 100%;
+    height: 120px;
+    line-height: 110px;
+    /*text-align: center;*/
+    padding: 0 0 0 40px;
+}
+#spaceImg{
+    vertical-align: middle;
+    width: 80px;
+    height: 78px;
+    cursor: pointer;
+
+}
+#heardText{
+    padding: 0 50px 0 0;
+    float: right;
+    /*display: table-cell;*/
+    height: 100px;
+    line-height: 80px;
+    vertical-align:middle;
+    font-size: 70px;
+}
+/*登陆注册文字*/
+.heardContent{
+    vertical-align:middle;
+    font-size: 25px;
+    cursor: pointer;
+}
+/*登录注册文字后面的逗号*/
+.heardContentComma{
+    font-weight: bold;
+}

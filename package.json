@@ -1,7 +1,6 @@
 {
   "name": "idea_planet",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
@@ -15,15 +14,29 @@
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "babel-loader": "^8.0.6",
+    "bootstrap": "^4.3.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "html-withimg-loader": "^0.1.16",
+    "izitoast": "^1.4.0",
+    "jquery": "^3.4.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "select2": "^4.0.10",
     "style-loader": "^1.0.0",
     "url-loader": "^2.1.0",
     "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9"
-  }
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliceCheney/idea_planet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AliceCheney/idea_planet/issues"
+  },
+  "homepage": "https://github.com/AliceCheney/idea_planet#readme",
+  "description": ""
 }
