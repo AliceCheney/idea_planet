@@ -5,14 +5,19 @@
     <title>想法星球</title>
     <link rel="shortcut icon" href="../img/航空航天-aerospace-地球月球-.png" type="image/x-icon" />
 </head>
-<body style="width: 100%;height: auto">
+<body>
 <!--顶部导航栏-->
-<header>
+<header style="z-index: 99;position:fixed">
     <div style="float: left">
         <div id="topImg">
-            <img id="spaceImg" src="../img/航空航天-aerospace-地球月球-.png">
+           <a href="index.html"><img id="spaceImg" src="../img/航空航天-aerospace-地球月球-.png"></a>
         </div>
     </div>
+<!--  搜索框  -->
+<!--    <div id="search">-->
+<!--        <img src="../img/错误.png" id="errImg">-->
+<!--        <input type="text" id="searchInput">-->
+<!--    </div>-->
     <div id="heardText">
         <span>{
             <span class="heardContent">首页<span class="heardContentComma"> ,</span></span>
@@ -21,10 +26,49 @@
         }</span>
     </div>
 </header>
-<!--登录框-->
-<div id="login">
-    <div>
+<!--搜索框-->
 
+<!--登录注册框-->
+<div id="login_registered">
+<!--登录文本-->
+    <div id="loginContent">
+        <div style="padding-top: 3%">
+            <p class="login_p">登录</p>
+            <hr>
+        </div>
+        <div >
+            <input class="login_input" type="email" multiple placeholder=" 输入您的邮箱">
+        </div>
+        <div >
+            <input class="login_input" type="password" placeholder=" 输入您的密码">
+        </div>
+        <p class="login_registered_p1" >还没注册？点我</p>
+        <div>
+            <button class="login_button">登录</button>
+        </div>
+    </div>
+<!--注册文本-->
+    <div id="registered">
+        <div style="padding-top: 3%">
+            <p class="login_p">注册</p>
+            <hr>
+        </div>
+        <div >
+            <input class="login_input" type="text" multiple placeholder=" 请起个名">
+        </div>
+        <div >
+            <input class="login_input" type="email" multiple placeholder=" 请输入您的邮箱">
+        </div>
+        <div >
+            <input class="login_input" type="password" placeholder=" 请输入您的密码">
+        </div>
+        <div >
+            <input class="login_input" type="password" placeholder=" 请再次输入您的密码">
+        </div>
+        <p class="login_registered_p">已有账号？点我登录</p>
+        <div>
+            <button class="login_button">注册</button>
+        </div>
     </div>
 </div>
 </body>

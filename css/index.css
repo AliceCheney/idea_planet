@@ -1,44 +1,242 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/banane.jpg');
+}
 #topImg{
     width: 100%;
-    height: 120px;
-    line-height: 110px;
+    height: 80px;
+    line-height: 70px;
     /*text-align: center;*/
-    padding: 0 0 0 40px;
+    padding: 0 0 0 30px;
+    /*background-color: cyan;*/
 }
 /*导航栏图片*/
 #spaceImg{
     vertical-align: middle;
-    width: 80px;
-    height: 78px;
+    width: 55px;
+    height: 55px;
     cursor: pointer;
 
 }
 /*导航栏文字样式*/
 #heardText{
-    padding: 0 50px 0 0;
+
     float: right;
-    /*display: table-cell;*/
-    height: 100px;
-    line-height: 80px;
+    height: 80px;
+    line-height: 60px;
     vertical-align:middle;
-    font-size: 70px;
+    font-size: 40px;
+    /*background-color: cyan;*/
 }
 /*登陆搜索文字*/
 .heardContent{
     vertical-align:middle;
-    font-size: 25px;
+    font-size: 18px;
     cursor: pointer;
 }
 /*登录搜索文字后面的逗号*/
 .heardContentComma{
     font-weight: bold;
 }
+/*搜索框*/
+#search{
+    margin: 0 auto ; /*水平居中*/
+    position: relative;
+    top: 50%;
+    /*transform: translateY(-50%);*/
+}
+#errImg{
+    width: 25px;
+    height: 30px;
+}
+#searchInput{
+    width: 200px;
+    border: 0;
+}
 /*登录框总体样式*/
-#login{
+#login_registered{
+    z-index: 123;
+    width: 400px;
+    height: auto;
+    background-color: whitesmoke;
+    border-radius: 6px;
+    box-shadow:
+            -6px -6px 8px -4px rgba(250,254,118,0.75),
+            6px -6px 8px -4px rgba(254,159,50,0.75),
+            6px 6px 8px -4px rgba(255,255,0,0.75),
+            6px 6px 8px -4px rgba(0,0,255,2.75);
+    margin: 0 auto ; /*水平居中*/
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/*登录所有样式*/
+#loginContent{
+  display: none;
+}
+.login_p{
     text-align: center;
-    width: 550px;
-    height: 550px;
-    background-color: #3e2fff;
-    border-radius: 10px;
-    box-shadow: gray 1px 1px 1px 1px;
+    width: 20%;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 40%;
+    /*background-color: black;*/
+}
+.login_input{
+    border-left-width:0;
+    border-top-width:0;
+    border-right-width:0;
+    border-bottom-width: 1px;
+    border-bottom-color: darkgray ;
+    background-color: transparent;
+    color: #000;
+    /*border: 1px solid #ccc;*/
+    width: 85%;
+    margin: 3% 7.5%;
+    /*border-radius: 5px;*/
+    height: 40px;
+}
+/*input选中时效果*/
+input:focus {
+    outline: none;
+    border-left-width:0;
+    border-top-width:0;
+    border-right-width:0;
+    border-bottom-width: 1px;
+    border-bottom-color: cornflowerblue ;
+}
+/*input 框提示文字颜色设置*/
+input::-webkit-input-placeholder { /* WebKit browsers */
+    color: darkgray;
+}
+.login_registered_p{
+    width: 40%;
+    font-size: 12px;
+    color: cornflowerblue;
+    margin: 0 0 0 7.5%;
+    cursor: pointer;
+}
+.login_registered_p1{
+    width: 40%;
+    font-size: 12px;
+    color: cornflowerblue;
+    margin: 0 0 0 7.5%;
+    cursor: pointer;
+}
+/*按钮简单效果*/
+/*#login_button{*/
+/*    position: relative; !** 相对布局 **!*/
+/*    width: 25%;*/
+/*    margin: 5% 37.5% 10% 37.5%;*/
+/*    border-width: 0; !* 边框宽度 *!*/
+/*    border-radius: 5px; !* 边框半径 *!*/
+/*    background: linear-gradient(to bottom right, #FFD300, #FFD300);*/
+/*    cursor: pointer; !* 鼠标移入按钮范围时出现手势 *!*/
+/*    outline: none; !* 不显示轮廓线 *!*/
+/*    color: black; !* 字体颜色 *!*/
+/*    font-weight: bold;*/
+/*    font-size: 19px; !* 字体大小 *!*/
+/*}*/
+/*.login_button:hover { !* 鼠标移入按钮范围时改变颜色 *!*/
+/*    !*background: green;*!*/
+/*    !*background: linear-gradient(to bottom right, blue, pink);*!*/
+/*    !*background: linear-gradient(to bottom right, #FFD300, darkgray);*!*/
+
+/*}*/
+/*.login_button:active{*/
+/*    top: 2px; !**向下偏移2px **!*/
+/*    background: linear-gradient(to bottom right, #FFD300, darkgray);*/
+/*    !*background: radial-gradient(darkgray, #FFD300);*!*/
+/*}*/
+
+/*按钮测试效果*/
+.login_button {
+    width: 25%;
+    /*height: 20px;*/
+    margin: 5% 37.5% 10% 37.5%;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    display: inline-block;
+    font-size: 17px;
+    font-weight: bold;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #FFD300;
+    color: black;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+    box-shadow: 0 2px 25px rgba(255, 211, 0, 0.5);
+}
+.login_button:focus {
+    outline: 0;
+}
+.login_button:before, .login_button:after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 140%;
+    height: 100%;
+    left: -20%;
+    z-index: -1000;
+    transition: all ease-in-out 0.5s;
+    background-repeat: no-repeat;
+}
+.login_button:before {
+    display: none;
+    top: -75%;
+    background-image: radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, transparent 20%, #FFD300 20%, transparent 30%), radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, transparent 10%, #FFD300 15%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%);
+    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+}
+.login_button:after {
+    display: none;
+    bottom: -75%;
+    background-image: radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, transparent 10%, #FFD300 15%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%), radial-gradient(circle, #FFD300 20%, transparent 20%);
+    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+}
+.login_button:active {
+    transform: scale(0.9);
+    background-color: #FFD300;
+    box-shadow: 0 2px 25px rgba(255, 211, 0, 0.2);
+}
+.login_button.animate:before {
+    display: block;
+    animation: topBubbles ease-in-out 0.75s forwards;
+}
+.login_button.animate:after {
+    display: block;
+    animation: bottomBubbles ease-in-out 0.75s forwards;
+}
+
+@keyframes topBubbles {
+    0% {
+        background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+    }
+    50% {
+        background-position: 0 80%, 0 20%, 10% 40%, 20% 0, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+    }
+    100% {
+        background-position: 0 70%, 0 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+        background-size: 0 0, 0 0,  0 0,  0 0,  0 0,  0 0;
+    }
+}
+@keyframes bottomBubbles {
+    0% {
+        background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0;
+    }
+    50% {
+        background-position: 0 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0;
+    }
+    100% {
+        background-position: 0 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+        background-size: 0 0, 0 0,  0 0,  0 0,  0 0,  0 0;
+    }
+}
+/*按钮测试结束*/
+#registered{
+    /*display: none;*/
 }
