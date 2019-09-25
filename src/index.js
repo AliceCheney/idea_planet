@@ -1,4 +1,3 @@
-
 import '../css/index.css'
 import './index.html'
 const $ = require('jquery');
@@ -27,17 +26,21 @@ for (let i = 0; i < classname.length; i++) {
 }
 //登录切换注册
 $('.login_registered_p1').click(function () {
-    // $("#registered").fadeIn();//淡出
-    // $("#loginContent").css('display','none')
     $("#loginContent").css('display','none')
     $("#registered").css('display','block')
 });
 //注册切换登录
 $('.login_registered_p').click(function () {
-        // $("#registered").fadeOut();//淡出
-        // $("#loginContent").fadeIn();//淡入
     $("#registered").css('display','none')
     $("#loginContent").css('display','block')
-    // $("#loginContent").fadeOut();//淡出
 
+});
+$('.login_input').focus(function () {
+    $(this).siblings('label').animate({top:'10px',left:'7.5%',fontSize:'10px'})
+});
+$('.login_input').blur(function () {
+    $(this).siblings('label').animate({top:'35px',left:'8.5%',fontSize:'15px'})
+});
+$('.login_label').click(function () {
+    $(this).siblings('input').focus()
 });

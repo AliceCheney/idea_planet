@@ -7,18 +7,18 @@
 </head>
 <body>
 <!--顶部导航栏-->
-<header style="z-index: 99;position:fixed">
-    <div style="float: left">
+<header style="z-index: 99;position:fixed;width: 100%" class="row">
+    <div class="col-md-4">
         <div id="topImg">
            <a href="index.html"><img id="spaceImg" src="../img/航空航天-aerospace-地球月球-.png"></a>
         </div>
     </div>
 <!--  搜索框  -->
-<!--    <div id="search">-->
-<!--        <img src="../img/错误.png" id="errImg">-->
-<!--        <input type="text" id="searchInput">-->
-<!--    </div>-->
-    <div id="heardText">
+    <div id="search" class="col-md-4">
+        <img src="../img/错误.png" id="errImg">
+        <input type="text" id="searchInput">
+    </div>
+    <div id="heardText" class="col-md-4">
         <span>{
             <span class="heardContent">首页<span class="heardContentComma"> ,</span></span>
             <span class="heardContent">登录<span class="heardContentComma"> ,</span></span>
@@ -36,11 +36,13 @@
             <p class="login_p">登录</p>
             <hr>
         </div>
-        <div >
-            <input class="login_input" type="email" multiple placeholder=" 输入您的邮箱">
+        <div>
+            <label class="login_label">输入您的邮箱/用户名</label>
+            <input class="login_input" type="email" multiple>
         </div>
-        <div >
-            <input class="login_input" type="password" placeholder=" 输入您的密码">
+        <div>
+            <label class="login_label">输入您的密码</label>
+            <input class="login_input" type="password" >
         </div>
         <p class="login_registered_p1" >还没注册？点我</p>
         <div>
@@ -54,16 +56,20 @@
             <hr>
         </div>
         <div >
-            <input class="login_input" type="text" multiple placeholder=" 请起个名">
+            <label class="login_label">请输入用户名</label>
+            <input class="login_input" type="text" multiple>
         </div>
         <div >
-            <input class="login_input" type="email" multiple placeholder=" 请输入您的邮箱">
+            <label class="login_label">请输入您的邮箱</label>
+            <input class="login_input" type="email" multiple>
         </div>
         <div >
-            <input class="login_input" type="password" placeholder=" 请输入您的密码">
+            <label class="login_label">请输入您的密码</label>
+            <input class="login_input" type="password">
         </div>
         <div >
-            <input class="login_input" type="password" placeholder=" 请再次输入您的密码">
+            <label class="login_label">请再次输入您的密码</label>
+            <input class="login_input" type="password">
         </div>
         <p class="login_registered_p">已有账号？点我登录</p>
         <div>

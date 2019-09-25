@@ -25,6 +25,7 @@ html,body{
 #heardText{
 
     float: right;
+    text-align: right;
     height: 80px;
     line-height: 60px;
     vertical-align:middle;
@@ -95,12 +96,21 @@ html,body{
     color: #000;
     /*border: 1px solid #ccc;*/
     width: 85%;
-    margin: 3% 7.5%;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
     /*border-radius: 5px;*/
     height: 40px;
 }
+.login_label{
+    position: relative;
+    left: 8.5%;
+    top: 35px;
+    font-size: 15px;
+    color: gray;
+    cursor:text;
+}
 /*input选中时效果*/
-input:focus {
+.login_input:focus {
     outline: none;
     border-left-width:0;
     border-top-width:0;
@@ -109,7 +119,7 @@ input:focus {
     border-bottom-color: cornflowerblue ;
 }
 /*input 框提示文字颜色设置*/
-input::-webkit-input-placeholder { /* WebKit browsers */
+.login_input::-webkit-input-placeholder { /* WebKit browsers */
     color: darkgray;
 }
 .login_registered_p{
