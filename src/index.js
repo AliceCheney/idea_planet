@@ -35,12 +35,36 @@ $('.login_registered_p').click(function () {
     $("#loginContent").css('display','block')
 
 });
+//获取焦点
 $('.login_input').focus(function () {
     $(this).siblings('label').animate({top:'10px',left:'7.5%',fontSize:'10px'})
 });
+//失去焦点
 $('.login_input').blur(function () {
-    $(this).siblings('label').animate({top:'35px',left:'8.5%',fontSize:'15px'})
+    if ($(this).val() === ''){
+        $(this).siblings('label').animate({top:'35px',left:'8.5%',fontSize:'15px'})
+    }
 });
 $('.login_label').click(function () {
     $(this).siblings('input').focus()
 });
+
+//用户名判断
+var str = '374829348791';
+var re = /\D/;      //  \D代表非数字
+$('.login_button').click(function () {
+    // if ($('#usernameInput').val() === ''){
+    //     alert("空的")
+    // } else{
+    //     let reg =/^.{0,12}$/;
+    //     let username =$('#usernameInput').val();
+    //     alert("太长了")
+    // }
+    if (re.test(str)) {   // 返回true,代表在字符串中找到了非数字。
+        console.log('不全是数字');
+    } else {
+        console.log('全是数字');
+    }
+});
+
+
