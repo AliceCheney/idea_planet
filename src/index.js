@@ -65,12 +65,18 @@ $('#registered_email_input').bind('input propertychange',function () {
     $('#registered_email_label').css('color','gray');
     $('#registered_email_label').text('请输入您的邮箱');
 });
+//再次输入密码恢复
+$('#registered_password_again_input').bind('input propertychange',function () {
+    $('#registered_password_again_label').css('color','gray');
+    $('#registered_password_again_label').text('请再次输入您的密码');
+});
 
 //用户名判断
-$('.login_button').click(function () {
+$('#registered_button').click(function () {
+    let isPass = true;
+
     let username = $('#registered_usernameInput').val();
-    let usernameReg = /^[0-9a-zA-Z_\-@]{4,12}$/;
-    usernameReg = new RegExp(/^[0-9a-zA-Z_\-@]{4,12}$/);
+    let usernameReg = new RegExp(/^[0-9a-zA-Z_\-@]{4,12}$/);
     if (usernameReg.test(username)) {
         console.log('用户名匹配');
     } else {
@@ -78,27 +84,31 @@ $('.login_button').click(function () {
         $('#registered_username_label').css('color','red');
         $('#registered_username_label').text('用户名格式不正确 只能输入4-12位字母 数字 -_@');
         console.log('用户名不匹配');
+        isPass = false;
     }
-});
-//密码判断
-$('.login_button').click(function () {
+
+    //密码判断
     let password = $('#registered_password_input').val();
-    let passwordReg = /^[0-9a-zA-Z~!@#$%^&*()_+|}{?><,./';:=\[\]\\`-]{6,18}$/;
-    passwordReg = new RegExp(/^[0-9a-zA-Z~!@#$%^&*()_+|}{?><,./';:=\[\]\\`-]{6,18}$/);
+    let passwordReg = new RegExp(/^[0-9a-zA-Z~!@#$%^&*()_+|}{?><,./';:=\[\]\\`-]{6,18}$/);
     if (passwordReg.test(password)) {
         console.log('密码匹配');
+        let rePassword = $('#registered_password_again_input').val();
+        if (password !== rePassword){
+            $('#registered_password_again_label').css('color','red')
+            $('#registered_password_again_label').text('密码输入不一致');
+            isPass = false;
+        }
     } else {
         //用户名格式不正确 只能输入字母 数组 -_@
         $('#registered_password_label').css('color','red');
         $('#registered_password_label').text('请输入6-18位数字字母英文字符');
         console.log('密码不匹配');
+        isPass = false;
     }
-});
-//邮箱判断
-$('.login_button').click(function () {
+
+    //邮箱判断
     let email = $('#registered_email_input').val();
-    let emailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    emailReg = new RegExp(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
+    let emailReg = new RegExp(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
     if (emailReg.test(email)) {
         console.log('邮箱匹配');
     } else {
@@ -106,5 +116,46 @@ $('.login_button').click(function () {
         $('#registered_email_label').css('color','red');
         $('#registered_email_label').text('请输入正确的邮箱格式');
         console.log('邮箱不匹配');
+        isPass = false;
+    }
+
+    if (isPass){
+        $("#registered_button").attr('disabled',true);
+        $("#registered_button_loading").css('display','inline-block');
+        $("#registered_button_text").css('display','none');
+        $.ajax({
+            url:'http://192.168.100.15:8080/user/register',
+            type:'post',
+            data: {
+                username: username,
+                password: password,
+                email: email
+            },
+            success: function (respond) {
+                $("#registered_button").attr('disabled',false);
+                $("#registered_button_loading").css('display','none');
+                $("#registered_button_text").css('display','block');
+                console.log(respond)
+                if (respond.message ==='00001') {
+                    iziToast.success({
+                        title:'注册成功',
+                        // message:''
+                    })
+                }else {
+                    iziToast.error({
+                        title: respond.message
+                    })
+                }
+            },
+            error:function (respond) {
+                $("#registered_button_loading").css('display','none');
+                $("#registered_button_text").css('display','block');
+                $("#registered_button").attr('disabled',false);
+                iziToast.error({
+                    title: '网络异常稍后重试'
+                })
+            }
+    });
+        console.log("通过")
     }
 });
