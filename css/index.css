@@ -136,31 +136,6 @@ html,body{
     margin: 0 0 0 7.5%;
     cursor: pointer;
 }
-/*按钮简单效果*/
-/*#login_button{*/
-/*    position: relative; !** 相对布局 **!*/
-/*    width: 25%;*/
-/*    margin: 5% 37.5% 10% 37.5%;*/
-/*    border-width: 0; !* 边框宽度 *!*/
-/*    border-radius: 5px; !* 边框半径 *!*/
-/*    background: linear-gradient(to bottom right, #FFD300, #FFD300);*/
-/*    cursor: pointer; !* 鼠标移入按钮范围时出现手势 *!*/
-/*    outline: none; !* 不显示轮廓线 *!*/
-/*    color: black; !* 字体颜色 *!*/
-/*    font-weight: bold;*/
-/*    font-size: 19px; !* 字体大小 *!*/
-/*}*/
-/*.login_button:hover { !* 鼠标移入按钮范围时改变颜色 *!*/
-/*    !*background: green;*!*/
-/*    !*background: linear-gradient(to bottom right, blue, pink);*!*/
-/*    !*background: linear-gradient(to bottom right, #FFD300, darkgray);*!*/
-
-/*}*/
-/*.login_button:active{*/
-/*    top: 2px; !**向下偏移2px **!*/
-/*    background: linear-gradient(to bottom right, #FFD300, darkgray);*/
-/*    !*background: radial-gradient(darkgray, #FFD300);*!*/
-/*}*/
 
 /*按钮测试效果*/
 .login_button {
