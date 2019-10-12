@@ -20,11 +20,15 @@
     </div>
     <div id="heardText" class="col-md-4">
         <span>{
-            <span class="heardContent">首页<span class="heardContentComma"> ,</span></span>
-            <span class="heardContent">登录<span class="heardContentComma"> ,</span></span>
-            <span class="heardContent">搜索</span>
+            <span class="heardContent" id="index">首页<span class="heardContentComma"> ,</span></span>
+            <span class="heardContent" id="search_text">搜索<span class="heardContentComma"> ,</span></span>
+            <span class="heardContent" id="login">登录</span>
+            <span class="heardContent" id="login_model_username"></span>
         }</span>
     </div>
+    <span class="login_model">
+                <a class="login_model_text">个人中心</a>
+    </span>
 </header>
 <!--搜索框-->
 
@@ -38,15 +42,18 @@
         </div>
         <div>
             <label class="login_label" id="login_username_label">输入您的邮箱/用户名</label>
-            <input class="login_input" type="email" multiple>
+            <input class="login_input" type="email" id="login_input" multiple>
         </div>
         <div>
             <label class="login_label" id="login_password_label">输入您的密码</label>
-            <input class="login_input" type="password" >
+            <input class="login_input" type="password" id="login_password_input">
         </div>
         <p class="login_registered_p1" >还没注册？点我</p>
         <div>
-            <button class="login_button">登录</button>
+            <button class="login_button" id="id_login_button">
+                <img id="login_button_loading" src="../img/loading.gif" style="width: 22%;display: none" />
+                <span id="login_button_text">登录</span>
+            </button>
         </div>
     </div>
 <!--注册文本-->

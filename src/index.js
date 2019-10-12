@@ -1,11 +1,20 @@
 import '../css/index.css'
 import './index.html'
 const $ = require('jquery');
+require('jquery.cookie');
 require('select2');
 require('select2/dist/css/select2.min.css');
 const iziToast = require('izitoast');
 require('izitoast/dist/css/iziToast.min.css');
 require('bootstrap/dist/css/bootstrap.min.css');
+//点击显示登录框
+    $('#login').click(function () {
+        if ($('#loginContent').css('display') === 'none'){
+            $('#loginContent').css('display','block');
+        }else {
+            $('#loginContent').css('display','none');
+        }
+});
 //泡泡按钮
 let animateButton = function(e) {
     e.preventDefault();
@@ -33,7 +42,6 @@ $('.login_registered_p1').click(function () {
 $('.login_registered_p').click(function () {
     $("#registered").css('display','none')
     $("#loginContent").css('display','block')
-
 });
 
 //获取焦点
@@ -51,7 +59,7 @@ $('.login_label').click(function () {
 });
 //输入框监听
 $('#registered_usernameInput').bind('input propertychange',function () {
-    //用户名恢复
+//用户名恢复
     $('#registered_username_label').css('color','gray');
     $('#registered_username_label').text('请编写您的用户号');
 });
@@ -70,11 +78,54 @@ $('#registered_password_again_input').bind('input propertychange',function () {
     $('#registered_password_again_label').css('color','gray');
     $('#registered_password_again_label').text('请再次输入您的密码');
 });
+//登录用户名恢复
+$('#login_input').bind('input propertychange',function () {
+    $('#login_username_label').css('color','gray');
+    $('#login_username_label').text('输入您的邮箱/用户名');
+});
+//登录密码恢复
+$('#login_password_input').bind('input propertychange',function () {
+    $('#login_password_label').css('color','gray');
+    $('#login_password_label').text('输入您的密码');
+});
+//登录用户名判断
+$('#id_login_button').click(function () {
+    let isLoginPass = true;
+    let loginUsername = $('#login_input').val();
+    let loginUsernameReg = new RegExp(/^[0-9a-zA-Z_\-@]{4,12}$/);
+    if (loginUsernameReg.test(loginUsername)){
+        console.log('登录用户名匹配')
+    }else {
+        $('#login_username_label').css('color','red');
+        $('#login_username_label').text('用户名格式不正确 只能输入4-12位字母 数字 -_@');
+        console.log('登录用户名不匹配');
+        isLoginPass = false;
+    }
+//登录密码判断
+    let loginPassword = $('#login_password_input').val();
+    let loginPasswordReg = new RegExp(/^[0-9a-zA-Z~!@#$%^&*()_+|}{?><,./';:=\[\]\\`-]{6,18}$/);
+    if (loginPasswordReg.test(loginPassword)){
+        console.log('登录密码匹配')
+    }else {
+        $('#login_password_label').css('color','red');
+        $('#login_password_label').text('用户名或密码不正确');
+        console.log('登陆密码不匹配');
+        isLoginPass = false;
+    }
+//登录总判断
+    if (isLoginPass){
+        $.cookie('token','eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRlIjoxNTcwNTk2MDYwLCJleHAiOjE1NzA1OTcwNjAsInVzZXJuYW1lIjoibmFtZSJ9.znA3MiAzJk1ZOChLvsdBgL6AURGWZ-uoBdNaIQuya64',{exception: 15});
+        $('#login_model_username').text($('#login_input').val());
+        $('#login').css('display','none')
+        $('#loginContent').css('display','none')
+    }
+});
 
+
+//注册判断
 //用户名判断
 $('#registered_button').click(function () {
     let isPass = true;
-
     let username = $('#registered_usernameInput').val();
     let usernameReg = new RegExp(/^[0-9a-zA-Z_\-@]{4,12}$/);
     if (usernameReg.test(username)) {
@@ -82,7 +133,7 @@ $('#registered_button').click(function () {
     } else {
         //用户名格式不正确 只能输入字母 数组 -_@
         $('#registered_username_label').css('color','red');
-        $('#registered_username_label').text('用户名格式不正确 只能输入4-12位字母 数字 -_@');
+        $('#registered_username_label').text('用户名编码格式不正确 只能输入4-12位字母 数字 -_@');
         console.log('用户名不匹配');
         isPass = false;
     }
@@ -118,7 +169,7 @@ $('#registered_button').click(function () {
         console.log('邮箱不匹配');
         isPass = false;
     }
-
+//注册总请求
     if (isPass){
         $("#registered_button").attr('disabled',true);
         $("#registered_button_loading").css('display','inline-block');
