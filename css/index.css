@@ -15,31 +15,34 @@ html,body{
 }
 /*导航栏图片*/
 #spaceImg{
-    vertical-align: middle;
-    width: 55px;
-    height: 55px;
+    height: 40px;
     cursor: pointer;
-
 }
 /*导航栏文字样式*/
-#heardText{
-
-    float: right;
-    text-align: right;
-    height: 80px;
-    line-height: 60px;
-    vertical-align:middle;
-    font-size: 40px;
-    /*background-color: cyan;*/
+.heardText{
+    height: 20px;
+    list-style: none;
+    font-size: 30px;
+}
+.heardText>li{
+    margin-left: 15px;
+}
+.heardText>li>ul>li>span{
+    cursor: pointer;
+}
+.blackLine{
+    height: 1.5px;
+    background-color: black;
+    display: none;
 }
 /*登陆搜索文字*/
 .heardContent{
     vertical-align:middle;
-    font-size: 18px;
+    font-size: 15px;
     cursor: pointer;
 }
 /*登录搜索文字后面的逗号*/
-.heardContentComma{
+.bold{
     font-weight: bold;
 }
 /*搜索框*/
@@ -73,6 +76,19 @@ html,body{
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+}
+/*用户菜单*/
+#user_menu{
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 3px;
+    display: none;
+    list-style: none;
+    font-size: 20px;
+    position: absolute;
+    right: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
 }
 /*登录模块*/
 .login_model{
@@ -207,6 +223,16 @@ html,body{
 .login_button.animate:after {
     display: block;
     animation: bottomBubbles ease-in-out 0.75s forwards;
+}
+/*圆形图片*/
+.round_icon{
+    width: 34px;
+    height: 34px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 @keyframes topBubbles {

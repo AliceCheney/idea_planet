@@ -8,27 +8,38 @@
 <body>
 <!--顶部导航栏-->
 <header style="z-index: 99;position:fixed;width: 100%" class="row">
-    <div class="col-md-4">
+    <div>
         <div id="topImg">
            <a href="index.html"><img id="spaceImg" src="../img/航空航天-aerospace-地球月球-.png"></a>
         </div>
     </div>
-<!--  搜索框  -->
-    <div id="search" class="col-md-4">
-        <img src="../img/错误.png" id="errImg">
-        <input type="text" id="searchInput">
+    <div style="position: absolute;right: 15px">
+        <ul class="heardText row">
+            <li>{</li>
+            <li>
+                <span class="heardContent" id="index">首页<span class="bold">,</span></span>
+                <p class="blackLine"></p>
+            </li>
+            <li>
+                <span class="heardContent" id="search_text">搜索<span class="bold">,</span></span>
+                <p class="blackLine"></p>
+            </li>
+            <li id="login">
+                <span  class="heardContent">登录</span>
+                <p class="blackLine"></p>
+            </li>
+            <li  id="login_model_username" style="display: none">
+                <img id="avatar" style="margin-top: 25%;" class="round_icon" src="" alt="加载失败"/>
+                <ul id="user_menu">
+                    <li style="text-align: center"><span class="heardContent">个人中心</span>
+                    </li>
+                    <li style="text-align: center"><span class="heardContent">退出登录</span>
+                    </li>
+                </ul>
+            </li>
+            <li>}</li>
+        </ul>
     </div>
-    <div id="heardText" class="col-md-4">
-        <span>{
-            <span class="heardContent" id="index">首页<span class="heardContentComma"> ,</span></span>
-            <span class="heardContent" id="search_text">搜索<span class="heardContentComma"> ,</span></span>
-            <span class="heardContent" id="login">登录</span>
-            <span class="heardContent" id="login_model_username"></span>
-        }</span>
-    </div>
-    <span class="login_model">
-                <a class="login_model_text">个人中心</a>
-    </span>
 </header>
 <!--搜索框-->
 
@@ -42,16 +53,16 @@
         </div>
         <div>
             <label class="login_label" id="login_username_label">输入您的邮箱/用户名</label>
-            <input class="login_input" type="email" id="login_input" multiple>
+            <input class="login_input" type="email" id="login_input" multiple/>
         </div>
         <div>
             <label class="login_label" id="login_password_label">输入您的密码</label>
-            <input class="login_input" type="password" id="login_password_input">
+            <input class="login_input" type="password" id="login_password_input"/>
         </div>
         <p class="login_registered_p1" >还没注册？点我</p>
         <div>
             <button class="login_button" id="id_login_button">
-                <img id="login_button_loading" src="../img/loading.gif" style="width: 22%;display: none" />
+                <img id="login_button_loading" src="../img/loading.gif" style="width: 22%;display: none"  alt="加载失败"/>
                 <span id="login_button_text">登录</span>
             </button>
         </div>
@@ -80,9 +91,8 @@
         </div>
         <p class="login_registered_p">已有账号？点我登录</p>
         <div>
-
             <button class="login_button" id="registered_button">
-                <img id="registered_button_loading" src="../img/loading.gif" style="width: 22%;display: none" />
+                <img id="registered_button_loading" src="../img/loading.gif" style="width: 22%;display: none"  alt="加载失败"/>
                 <span id="registered_button_text">注册</span>
             </button>
         </div>
