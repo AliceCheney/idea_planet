@@ -8,6 +8,11 @@ const iziToast = require('izitoast');
 require('izitoast/dist/css/iziToast.min.css');
 require('bootstrap/dist/css/bootstrap.min.css');
 $(document).ready(function () {
+    // 退出登录
+    $('#login_out').click(function () {
+        $.removeCookie('token')
+        location.reload();
+    });
      let token = $.cookie('token');
      if (token){
          $.ajax({
@@ -16,18 +21,25 @@ $(document).ready(function () {
              data:{
                  token:token
              },
+
              success:function (respond) {
                  if (respond.message === '成功'){
-                     console.log(respond)
+                     console.log(respond);
+                     $('#login_button_loading').css('display','none');
+                     $('#login_button_text').css('display','block');
                      $('#login').css('display','none')
                      $('#login_model_username').css('display','block')
                      $('#avatar').attr('src',respond.data.avatar)
                  }
+             },
+             error:function (respond) {
+                 if (respond.message === ''){
+
+                 }
              }
          })
-     } else {
-
      }
+
     //点击显示登录框
     $('#login').click(function () {
         if ($('#loginContent').css('display') === 'none'){
@@ -135,7 +147,8 @@ $(document).ready(function () {
         }
 //登录总判断
         if (isLoginPass){
-
+            $("#login_button_loading").css('display','inline-block');
+            $("#login_button_text").css('display','none');
             $.ajax({
                 url:'http://192.168.100.15:8080/login',
                 type:'post',
@@ -145,10 +158,27 @@ $(document).ready(function () {
                 },
                 success:function (respond) {
                     if (respond.message === '成功'){
-                        console.log(respond)
+                        // console.log(respond);
+                        // location.reload();
                         $.cookie('token',respond.data)
-                        location.reload();
+                        $("#login_button_loading").css('display','none');
+                        $("#login_button_text").css('display','block');
+                        iziToast.success({
+                            title:'登录成功',
+                            // message:''
+                        })
+                    }else {
+                        iziToast.error({
+                            title: respond.message
+                        })
                     }
+                },
+                error:function (respond) {
+                    $("#login_button_loading").css('display','none');
+                    $("#login_button_text").css('display','block');
+                    iziToast.error({
+                        title: '网络异常请稍后重试'
+                    })
                 }
             })
         }
