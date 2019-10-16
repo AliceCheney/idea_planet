@@ -7,12 +7,8 @@ require('select2/dist/css/select2.min.css');
 const iziToast = require('izitoast');
 require('izitoast/dist/css/iziToast.min.css');
 require('bootstrap/dist/css/bootstrap.min.css');
+const Typed = require('typed.js');
 $(document).ready(function () {
-    // 退出登录
-    $('#login_out').click(function () {
-        $.removeCookie('token')
-        location.reload();
-    });
      let token = $.cookie('token');
      if (token){
          $.ajax({
@@ -30,15 +26,37 @@ $(document).ready(function () {
                      $('#login').css('display','none')
                      $('#login_model_username').css('display','block')
                      $('#avatar').attr('src',respond.data.avatar)
+                 } else {
+                     $.removeCookie('token');
+                     iziToast.error({
+                         title: respond.message
+                     });
                  }
              },
              error:function (respond) {
-                 if (respond.message === ''){
-
-                 }
+                 iziToast.error({
+                     title: '网络连接失败'
+                 })
              }
          })
      }
+
+    let prettyLog = 'sadfsadf我范德萨分';
+
+    new Typed('#typed', {
+        strings: ['My strings are: <i>strings</i> with', 'My strings are: <strong>HTML</strong>', 'My strings are: Chars &times; &copy;'],
+        typeSpeed: 0,
+        backSpeed: 0,
+        smartBackspace: true, // this is a default
+        loop: true,
+        cursorChar: ''
+    })
+
+    // 退出登录
+    $('#login_out').click(function () {
+        $.removeCookie('token')
+        location.reload();
+    });
 
     //点击显示登录框
     $('#login').click(function () {
@@ -249,11 +267,9 @@ $(document).ready(function () {
                     $("#registered_button").attr('disabled',false);
                     $("#registered_button_loading").css('display','none');
                     $("#registered_button_text").css('display','block');
-                    console.log(respond)
                     if (respond.message ==='成功') {
                         iziToast.success({
-                            title:'注册成功',
-                            // message:''
+                            title:'注册成功'
                         })
                     }else {
                         iziToast.error({
@@ -270,7 +286,6 @@ $(document).ready(function () {
                     })
                 }
             });
-            console.log("通过")
         }
     });
     $(".heardText").children('li').children('span').hover(function () {
