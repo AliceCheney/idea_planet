@@ -1,7 +1,16 @@
 html,body{
-    /*background-image: url('../img/banane.jpg');*/
-    /*backgroud: no-repeat;*/
-    background-color: white;
+    /*background: url('../img/banane.jpg') no-repeat center top;*/
+    /*background-size: 100%;*/
+    background-color: #FFD300;
+}
+
+.bottom_right_corner_img{
+    position: fixed;
+    z-index: 99;
+    height: 30px;
+    bottom: 2%;
+    right: 2%;
+    cursor: pointer;
 }
 #topImg{
     width: 100%;

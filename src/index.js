@@ -7,8 +7,13 @@ require('select2/dist/css/select2.min.css');
 const iziToast = require('izitoast');
 require('izitoast/dist/css/iziToast.min.css');
 require('bootstrap/dist/css/bootstrap.min.css');
+require('bootstrap/js/dist/modal')
 const Typed = require('typed.js');
 $(document).ready(function () {
+    $('#bottom_right_corner_img_click').click(function () {
+        console.log('dsf')
+    });
+
      let token = $.cookie('token');
      if (token){
          $.ajax({

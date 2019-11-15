@@ -42,18 +42,28 @@
         </ul>
     </div>
 </header>
-<div style="position: absolute;top: 7%;font-size: 40px">
+<div style="position: absolute;top: 7%;font-size: 40px;margin-left: 36%">
     <div id="typed"></div>
 </div>
-<div id="con" style="position: absolute;top: 14%;width: 100%">
+<div id="con" style="position: absolute;top: 18%;width: 100%;">
     <div class="row" style="margin: 0">
-        <div class="col-md-3 ">
+        <div class="col-md-3 " >
             <div class="frame" style="width: 90%;border-radius: 5px;background-color: #ededed;height: 200px;margin: 5% 5%;box-shadow:
             -6px -6px 8px -4px rgba(250,254,118,0.75),
             6px -6px 8px -4px rgba(254,159,50,0.75),
             6px 6px 8px -4px rgba(255,255,0,0.75),
             6px 6px 8px -4px rgba(0,0,255,2.75); ">
-
+                <div style="margin: 0;padding: 2%;" class="row">
+                    <img src="http://b-ssl.duitang.com/uploads/item/201702/15/20170215155759_jixSK.jpeg" style="border-radius: 50px;height: 50px">
+                    <div>
+                        <p style="color: cornflowerblue;font-weight: bold;margin: 0" >@昵称</p>
+                        <p style="color: grey;font-size: 12px;margin: 0;text-align: center">14:51</p>
+                    </div>
+                </div>
+                <hr style="margin: 0">
+                <p style="padding: 3%; word-break: break-all;font-size: 14px;">
+                    asdadadad阿萨大大实打实大苏打倒萨大大是豆腐干大概豆腐干豆腐干
+                </p>
             </div>
             <div class="frame" style="width: 90%;border-radius: 5px;background-color: #ed8b89;height: 300px;margin: 5% 5%;box-shadow:
             -6px -6px 8px -4px rgba(250,254,118,0.75),
@@ -283,6 +293,29 @@
             </button>
         </div>
     </div>
+</div>
+<!--右下角点击发表-->
+<div id="bottom_right_corner_img_click">
+<img class="bottom_right_corner_img" src="../img/select.svg" data-toggle="modal" data-target="#myModal">
+</div>
+<!--发表想法框-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">巴拉你的想法</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea rows="5" style="width: 100%">
+                </textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
 </body>
 </html>
