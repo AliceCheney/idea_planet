@@ -10,11 +10,103 @@ require('bootstrap/dist/css/bootstrap.min.css');
 require('bootstrap/js/dist/modal')
 const Typed = require('typed.js');
 $(document).ready(function () {
+    $.ajax({
+       url:'http://192.168.100.15:6332/idea/getIdeas' ,
+        type:'get',
+        data:{
+           size:20,
+           num:1
+        },
+        success:function (respond) {
+
+            for ( let i = 0;i <respond.data.length;i++){
+                let time = i+1;
+                let color;
+                let random = Math.ceil(Math.random()*5);
+                switch (random) {
+                    case 1:color= '#ededed';break;
+                    case 2:color = 'darkolivegreen';break;
+                    case 3:color = '#9faced';break;
+                    case 4:color = '#9bed8c';break;
+                    case 5:color = '#edacac';break;
+                }
+                let value = '<div class="frame" style="width: 90%;border-radius: 5px;background-color: '+color+';margin: 5% 5%;box-shadow:\n' +
+                    '            -6px -6px 8px -4px rgba(250,254,118,0.75),\n' +
+                    '            6px -6px 8px -4px rgba(254,159,50,0.75),\n' +
+                    '            6px 6px 8px -4px rgba(255,255,0,0.75),\n' +
+                    '            6px 6px 8px -4px rgba(0,0,255,2.75); ">\n' +
+                    '                <div style="margin: 0;padding: 2%;" class="row">\n' +
+                    '                    <img src="'+ respond.data[i].avatar +'" style="border-radius: 50px;height: 50px">\n' +
+                    '                    <div>\n' +
+                    '                        <p style="color: cornflowerblue;font-weight: bold;margin: 0" >@'+respond.data[i].nikeName+'</p>\n' +
+                    '                        <p style="color: grey;font-size: 12px;margin: 0;text-align: center">'+ respond.data[i].createDateStr +'</p>\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '                <hr style="margin: 0">\n' +
+                    '                <p style="padding: 3%; word-break: break-all;font-size: 14px;">\n' +
+                    respond.data[i].content +
+                    '                </p>\n' +
+                    '            </div>';
+                switch (time%4) {
+                    case 1:$('#idea_row1').append(value);break;
+                    case 2:$('#idea_row2').append(value);break;
+                    case 3:$('#idea_row3').append(value);break;
+                    case 0:$('#idea_row4').append(value);break;
+                }
+            }
+        }
+    });
     $('#bottom_right_corner_img_click').click(function () {
         console.log('dsf')
     });
+    $("#send_idea").click(function () {
+        $('#send_idea').prop('disabled',true);
+        $.ajax({
+            url:'http://192.168.100.15:6332/idea/sendIdea',
+            type:'post',
+            beforeSend: function (XMLHttpRequest) {
+                let token = $.cookie('token');
+                if (token){
+                    XMLHttpRequest.setRequestHeader("token", token);
+                }
+            },
+            data:{
+                content:$('#idea_content').val()
+            },
+            success:function (respond) {
+                if(respond.message.indexOf('成功') !== -1){
+                    iziToast.success({
+                        title: '发送成功'
+                    });
+                    // $('#myModal').modal('hide');
+                    // $('#idea_content').val('');
+                    // $('#idea_content_count').text('0')
+                    location.reload();
+                }else {
+                    iziToast.error({
+                        title: respond.message
+                    })
+                }
+                $('#send_idea').prop('disabled',false);
+            },
+            error:function (respond_error) {
+                iziToast.error({
+                    title: '网络连接失败'
+                });
+                $('#send_idea').prop('disabled',false);
+            }
+        })
+    });
+    $("#idea_content").on("input propertychange", function() {
+        $('#idea_content_count').text($('#idea_content').val().length)
+        if ($('#idea_content').val().length>100){
+            $('#idea_content_count_p').css('color','red')
+        }else {
+            $('#idea_content_count_p').css('color','gray')
+        }
+    });
 
-     let token = $.cookie('token');
+    let token = $.cookie('token');
      if (token){
          $.ajax({
              url:'http://192.168.100.15:8080/testToken',
@@ -28,7 +120,7 @@ $(document).ready(function () {
                      console.log(respond);
                      $('#login_button_loading').css('display','none');
                      $('#login_button_text').css('display','block');
-                     $('#login').css('display','none')
+                     $('#login').css('display','none');
                      $('#login_model_username').css('display','block')
                      $('#avatar').attr('src',respond.data.avatar)
                  } else {
@@ -182,7 +274,7 @@ $(document).ready(function () {
                 success:function (respond) {
                     if (respond.message === '成功'){
                         // console.log(respond);
-                        // location.reload();
+                        location.reload();
                         $.cookie('token',respond.data)
                         $("#login_button_loading").css('display','none');
                         $("#login_button_text").css('display','block');
