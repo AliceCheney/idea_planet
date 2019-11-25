@@ -7,55 +7,88 @@ require('select2/dist/css/select2.min.css');
 const iziToast = require('izitoast');
 require('izitoast/dist/css/iziToast.min.css');
 require('bootstrap/dist/css/bootstrap.min.css');
-require('bootstrap/js/dist/modal')
+require('bootstrap/js/dist/modal');
 const Typed = require('typed.js');
+let num = 1;
+let size = 50;
+let loading = false;
 $(document).ready(function () {
-    $.ajax({
-       url:'http://192.168.100.15:6332/idea/getIdeas' ,
-        type:'get',
-        data:{
-           size:20,
-           num:1
-        },
-        success:function (respond) {
-
-            for ( let i = 0;i <respond.data.length;i++){
-                let time = i+1;
-                let color;
-                let random = Math.ceil(Math.random()*5);
-                switch (random) {
-                    case 1:color= '#ededed';break;
-                    case 2:color = 'darkolivegreen';break;
-                    case 3:color = '#9faced';break;
-                    case 4:color = '#9bed8c';break;
-                    case 5:color = '#edacac';break;
-                }
-                let value = '<div class="frame" style="width: 90%;border-radius: 5px;background-color: '+color+';margin: 5% 5%;box-shadow:\n' +
-                    '            -6px -6px 8px -4px rgba(250,254,118,0.75),\n' +
-                    '            6px -6px 8px -4px rgba(254,159,50,0.75),\n' +
-                    '            6px 6px 8px -4px rgba(255,255,0,0.75),\n' +
-                    '            6px 6px 8px -4px rgba(0,0,255,2.75); ">\n' +
-                    '                <div style="margin: 0;padding: 2%;" class="row">\n' +
-                    '                    <img src="'+ respond.data[i].avatar +'" style="border-radius: 50px;height: 50px">\n' +
-                    '                    <div>\n' +
-                    '                        <p style="color: cornflowerblue;font-weight: bold;margin: 0" >@'+respond.data[i].nikeName+'</p>\n' +
-                    '                        <p style="color: grey;font-size: 12px;margin: 0;text-align: center">'+ respond.data[i].createDateStr +'</p>\n' +
-                    '                    </div>\n' +
-                    '                </div>\n' +
-                    '                <hr style="margin: 0">\n' +
-                    '                <p style="padding: 3%; word-break: break-all;font-size: 14px;">\n' +
-                    respond.data[i].content +
-                    '                </p>\n' +
-                    '            </div>';
-                switch (time%4) {
-                    case 1:$('#idea_row1').append(value);break;
-                    case 2:$('#idea_row2').append(value);break;
-                    case 3:$('#idea_row3').append(value);break;
-                    case 0:$('#idea_row4').append(value);break;
-                }
-            }
-        }
+    getIdeas();
+    $(window).scroll(function () {
+       let scrollTop = $(this).scrollTop();
+       let height = $(document).height();
+       let windowHeight = $(this).height();
+       if (Math.ceil(scrollTop) + windowHeight === height && !loading){
+           getIdeas();
+       }
     });
+    function getIdeas(){
+        loading = true;
+        $.ajax({
+            url:'http://192.168.100.15:6332/idea/getIdeas' ,
+            type:'get',
+            data:{
+                size:size,
+                num:num
+            },
+            success:function (respond) {
+                if (respond.data.length === 0){
+                    loading = true;
+                    iziToast.info({
+                        title: '已经没有更多了'
+                    });
+                    return;
+                }
+                num += 1;
+                for ( let i = 0;i <respond.data.length;i++){
+                    if (!respond.data[i].userId){
+                        respond.data[i].nikeName = '游客';
+                        respond.data[i].avatar = 'https://img2.woyaogexing.com/2019/11/12/93187d50fdb944f28de84159edfb7cdd!400x400.jpeg'
+                    }
+                    let time = i+1;
+                    let color;
+                    let random = Math.ceil(Math.random()*5);
+                    switch (random) {
+                        case 1:color= '#ededed';break;
+                        case 2:color = 'darkolivegreen';break;
+                        case 3:color = '#9faced';break;
+                        case 4:color = '#9bed8c';break;
+                        case 5:color = '#edacac';break;
+                    }
+                    let value = '<div class="frame" style="width: 90%;border-radius: 5px;background-color: '+color+';margin: 5% 5%;box-shadow:\n' +
+                        '            -6px -6px 8px -4px rgba(250,254,118,0.75),\n' +
+                        '            6px -6px 8px -4px rgba(254,159,50,0.75),\n' +
+                        '            6px 6px 8px -4px rgba(255,255,0,0.75),\n' +
+                        '            6px 6px 8px -4px rgba(0,0,255,2.75); ">\n' +
+                        '                <div style="margin: 0;padding: 2%;" class="row">\n' +
+                        '                    <img src="'+ respond.data[i].avatar +'" style="border-radius: 50px;height: 50px">\n' +
+                        '                    <div>\n' +
+                        '                        <p style="color: cornflowerblue;font-weight: bold;margin: 0" >@'+respond.data[i].nikeName+'</p>\n' +
+                        '                        <p style="color: grey;font-size: 12px;margin: 0;text-align: center">'+ respond.data[i].createDateStr +'</p>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '                <hr style="margin: 0">\n' +
+                        '                <p style="padding: 3%; word-break: break-all;font-size: 14px;">\n' +
+                        respond.data[i].content +
+                        '                </p>\n' +
+                        '            </div>';
+                    switch (time%4) {
+                        case 1:$('#idea_row1').append(value);break;
+                        case 2:$('#idea_row2').append(value);break;
+                        case 3:$('#idea_row3').append(value);break;
+                        case 0:$('#idea_row4').append(value);break;
+                    }
+                }
+                loading = false;
+            },
+            error:function (respond_error) {
+                loading = false;
+                iziToast.error({
+                    title: '网络连接失败'
+                });
+            }
+        });
+    }
     $('#bottom_right_corner_img_click').click(function () {
         console.log('dsf')
     });
