@@ -7,7 +7,7 @@ html,body{
 .bottom_right_corner_img{
     position: fixed;
     z-index: 99;
-    height: 30px;
+    height: 60px;
     bottom: 2%;
     right: 2%;
     cursor: pointer;
